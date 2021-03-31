@@ -1,23 +1,3 @@
-# Alloy-VSCode README
-
-This extension provides very basic syntax high-lighting for Alloy Analyzer(<http://alloy.mit.edu/alloy/index.html>).
-
-There might be some bugs and could not handle all of the situations.
-
-## Features
-
-Syntax Highlighting for Alloy Modeling Language
-
-## Requirements
-
-Nothing
-
-## Known Issues
-
-Some (maybe not) complex expressions might not be able to colorize as expected.
-
-## Release Notes
-
 ### 0.1.6
 
 Update package category.
@@ -46,7 +26,7 @@ Now support self defined module and functions.
 
 1. Totally remove the tmLanguage file extracted from HiroakiMikami/atom-alloy.
 2. Write a totally new tmLanguage file from scratch based on the Alloy Language Reference.
-    * Using a multi-level approach to reduce the pattern matching times and enhance the coverage.
+    * Using a multi-level approach to reduce the pattern matching times and enhance the coverage. 
     * Reduce the miss colorizing dramatically.
     * More neat for further refactoring.
 3. Add support to built-in functions.
@@ -54,7 +34,7 @@ Now support self defined module and functions.
 
 ### 0.0.3
 
-Add the link to the original tmLanguage file extracted from HiroakiMikami/atom-alloy(<https://github.com/HiroakiMikami/atom-alloy>).
+Add the link to the original tmLanguage file extracted from HiroakiMikami/atom-alloy(https://github.com/HiroakiMikami/atom-alloy).
 
 ### 0.0.2
 
