@@ -1,16 +1,26 @@
 {
-    "name": "alloy-vscode",
-    "displayName": "Alloy VSCode",
-    "description": "Alloy analyzer language support",
-    "repository": "https://github.com/DongyuZhao/vscode-alloy",
-    "version": "0.1.6",
-    "publisher": "DongyuZhao",
+    "name": "alloy",
+    "displayName": "Alloy",
+    "description": "support for the Alloy modelling language",
+    "version": "0.6.1",
+    "publisher": "ArashSahebolamri",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/s-arash/org.alloytools.alloy/tree/ls"
+    },
     "engines": {
-        "vscode": "^1.12.0"
+        "vscode": "^1.23.0"
     },
     "categories": [
+        "Other",
         "Programming Languages"
     ],
+    "activationEvents": [
+        "onLanguage:alloy",
+        "onLanguage:markdown",
+        "onCommand:alloy.openAlloyEditor"
+    ],
+    "main": "./out/extension",
     "contributes": {
         "languages": [
             {
@@ -41,11 +51,116 @@
 				  "meta.embedded.block.alloy": "alloy"
 				}
 			  }
+        ],
+        "configuration": [
+            {
+                "title": "Alloy",
+                "properties": {
+                    "alloy.commandHighlightMode": {
+                        "type": "string",
+                        "enum": [
+                            "codelens",
+                            "link"
+                        ],
+                        "default": "codelens",
+                        "description": "How run and check commands are highlighted in code"
+                    }
+                }
+            }
+        ],
+        "commands": [
+            {
+                "command": "alloy.openAlloyEditor",
+                "title": "Open Alloy Editor",
+                "category": "Alloy"
+            },
+            {
+                "command": "alloy.listCommands",
+                "title": "List Alloy Commands",
+                "category": "Alloy"
+            },
+            {
+                "command": "alloy.executeAllCommands",
+                "title": "Execute All Alloy Commands",
+                "category": "Alloy"
+            },
+            {
+                "command": "alloy.openLatestInstance",
+                "title": "Open Latest Alloy Instance",
+                "category": "Alloy"
+            },
+            {
+                "command": "alloy.executeCommandUnderCursor",
+                "title": "Execute Current Alloy Command",
+                "category": "Alloy"
+            }
+        ],
+        "keybindings": [
+            {
+                "key": "ctrl+shift+a e",
+                "command": "alloy.executeCommandUnderCursor",
+                "when": "editorTextFocus && editorLangId == 'alloy'"
+            },
+            {
+                "key": "ctrl+shift+a e",
+                "command": "alloy.executeCommandUnderCursor",
+                "when": "editorTextFocus && editorLangId == 'markdown'"
+            },
+            {
+                "key": "ctrl+shift+a a",
+                "command": "alloy.executeAllCommands",
+                "when": "editorTextFocus && editorLangId == 'alloy'"
+            },
+            {
+                "key": "ctrl+shift+a a",
+                "command": "alloy.executeAllCommands",
+                "when": "editorTextFocus && editorLangId == 'markdown'"
+            },
+            {
+                "key": "ctrl+shift+a c",
+                "command": "alloy.listCommands",
+                "when": "editorTextFocus && editorLangId == 'alloy'"
+            },
+            {
+                "key": "ctrl+shift+a c",
+                "command": "alloy.listCommands",
+                "when": "editorTextFocus && editorLangId == 'markdown'"
+            },
+            {
+                "key": "ctrl+shift+a o",
+                "command": "alloy.openAlloyEditor"
+            },
+            {
+                "key": "ctrl+shift+a l",
+                "command": "alloy.openLatestInstance"
+            }
         ]
     },
-    "__metadata": {
-        "id": "4486ab47-8e95-46ad-b12a-877919ec959b",
-        "publisherId": "8fe1968c-9b6c-4259-9acc-1cdffa779687",
-        "publisherDisplayName": "Dongyu Zhao"
+    "keywords": [
+        "Alloy"
+    ],
+    "extensionDependencies": [
+        "DongyuZhao.alloy-vscode"
+    ],
+    "author": {
+        "name": "Arash Sahebolamri"
+    },
+    "qna": "marketplace",
+    "scripts": {
+        "vscode:prepublish": "npm run compile",
+        "compile": "tsc -p ./",
+        "watch": "tsc -watch -p ./",
+        "postinstall": "node ./node_modules/vscode/bin/install",
+        "test": "npm run compile && node ./node_modules/vscode/bin/test"
+    },
+    "devDependencies": {
+        "@types/mocha": "^2.2.42",
+        "@types/node": "^7.10.10",
+        "tslint": "^5.20.1",
+        "typescript": "^2.6.1",
+        "vscode": "^1.1.36"
+    },
+    "dependencies": {
+        "vscode-languageclient": "^4.4.2"
     }
 }

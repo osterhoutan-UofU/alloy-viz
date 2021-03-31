@@ -1,65 +1,46 @@
-# Alloy-VSCode README
-
-This extension provides very basic syntax high-lighting for Alloy Analyzer(<http://alloy.mit.edu/alloy/index.html>).
-
-There might be some bugs and could not handle all of the situations.
+This extension provides rich support for the [Alloy](http://alloytools.org/) specification language.
 
 ## Features
+- Running Alloy commands from VS Code (using mouse or key combo <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>A</kbd> <kbd>E</kbd>)
+- Viewing results (instances/counterexamples)
+- Editor integrated error reporting
 
-Syntax Highlighting for Alloy Modeling Language
+![executing alloy commands](https://github.com/s-arash/VSCodeAlloyExtension/raw/master/media_readme/executing-commands.gif)
+
+- Go to Definition support
+- Support for Alloy Markdown files
+
+![go to definition and markdown support](https://github.com/s-arash/VSCodeAlloyExtension/raw/master/media_readme/alloy-markdown2.gif)
+
+- Find References support
+- Rename support (works across files)
+<!-- ![rename support](https://imgur.com/download/vw3Mpf7) -->
+<!-- ![find references support](https://imgur.com/download/LhpXCZX) -->
+
+![ref, rename support](https://github.com/s-arash/VSCodeAlloyExtension/raw/master/media_readme/demo-ref-rename2.gif)
+
+- Document outline/symbol search support
+- Folder symbol search support 
+
+<!-- ![symbol support](https://imgur.com/download/1booynh) -->
+![symbol support](https://github.com/s-arash/VSCodeAlloyExtension/raw/master/media_readme/demo-symbol3.gif)
+
+(Syntax highlighting provided by [alloy-vscode](https://marketplace.visualstudio.com/items?itemName=DongyuZhao.alloy-vscode))
+
+This extension is bundled with a [custom version](https://github.com/s-arash/org.alloytools.alloy/tree/ls) of the Alloy analyzer JAR that supports the Language Server Protocol.
+## Tips
+
+- To change Alloy settings (SAT solver, allow warnings, etc.) open the command palette (<kbd>Ctrl</kbd>/<kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd>), and find the command `Open Alloy Editor`. This will open the bundled Alloy analyzer.
+
+- To execute the Alloy command under cursor, use the command `Execute Current Alloy Command` (key combo <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>A</kbd> <kbd>E</kbd>).
+
+- To select an Alloy command from a drop down menu, use the command `List Alloy Commands`.
+
+- To execute all Alloy commands in an Alloy file, use the command `Execute All Alloy Commands`.
+
+- Code lens can be disabled by changing the preference `alloy.commandHighlightMode` to `link` (a good option if you don't like the code moving vertically while you type).
 
 ## Requirements
 
-Nothing
+Java (8 or higher) must be installed and included in PATH.
 
-## Known Issues
-
-Some (maybe not) complex expressions might not be able to colorize as expected.
-
-## Release Notes
-
-### 0.1.6
-
-Update package category.
-
-### 0.1.5
-
-Add highlight to "seq" and "else", thanks for Ferhat Erata.
-
-### 0.1.4
-
-Added support for Alloy code blocks in markdown
-
-### 0.1.3
-
-Fix some issues, thanks for Arash Sahebolamri.
-
-### 0.1.2
-
-Now support self defined module and functions.
-
-### 0.1.1
-
-Now support self defined module and functions.
-
-### 0.1.0
-
-1. Totally remove the tmLanguage file extracted from HiroakiMikami/atom-alloy.
-2. Write a totally new tmLanguage file from scratch based on the Alloy Language Reference.
-    * Using a multi-level approach to reduce the pattern matching times and enhance the coverage.
-    * Reduce the miss colorizing dramatically.
-    * More neat for further refactoring.
-3. Add support to built-in functions.
-4. Fix issues.
-
-### 0.0.3
-
-Add the link to the original tmLanguage file extracted from HiroakiMikami/atom-alloy(<https://github.com/HiroakiMikami/atom-alloy>).
-
-### 0.0.2
-
-Fix a minor typo.
-
-### 0.0.1
-
-Initial Release.
