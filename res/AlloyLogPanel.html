@@ -9,10 +9,11 @@
 
 <body>
 
-    <div id='log' style="width: 100%"> </div>
+    <div id='log' style="width: 100%; overflow: auto;"> </div>
     <button id='btnStop' style="margin:5px 5px 5px 0px; padding:4px 11px 4px 11px;"> Stop </button>
 
     <script>
+
         const logPanel = document.getElementById('log');
         const vscode = acquireVsCodeApi();
         const btnStop = document.getElementById('btnStop');
@@ -23,11 +24,11 @@
         // Handle the message inside the webview
         window.addEventListener('message', event => {
             const req = event.data;
-            
+
             let style = "";
-            if(req.bold)
+            if (req.bold)
                 style += "font-weight:bold;";
-            if(req.messageType == 4)
+            if (req.messageType == 4)
                 style += "color: red;";
 
             if (req.messageType == 0 || req.messageType == 1)
@@ -65,13 +66,13 @@
             window.scrollTo(0, document.body.scrollHeight);
         });
 
-// enum AlloyLanguageServerMessageType{
-// 	RunStarted, 0
-// 	RunInProgress, 1
-// 	RunResult, 2
-// 	RunCompleted, 3
-//  Warning, 4
-// }
+        // enum AlloyLanguageServerMessageType{
+        // 	RunStarted, 0
+        // 	RunInProgress, 1
+        // 	RunResult, 2
+        // 	RunCompleted, 3
+        //  Warning, 4
+        // }
     </script>
 </body>
 

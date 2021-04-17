@@ -40,7 +40,7 @@ export function activate(context: vscode.ExtensionContext) {
 	const alloyJar = context.asAbsolutePath("org.alloytools.alloy.dist.jar");
 	console.appendLine("alloyJar: " + alloyJar);
 	
-	alloyWebViewContent = fs.readFileSync(context.asAbsolutePath("AlloyPanel.html")).toString();
+	alloyWebViewContent = fs.readFileSync(context.asAbsolutePath("./res/AlloyPanel.html")).toString();
 	
 
 	let disposable = vscode.commands.registerCommand('ExecuteAlloyCommand', (uri: String, ind: number, line: number, char: number) => {

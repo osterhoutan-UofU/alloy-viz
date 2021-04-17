@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alloy</title>
+</head>
+
+<body>
+
+    <div id='live-viz' style="width: 100%; overflow: auto;"> </div>
+    <button id='btnUpdate' style="margin:5px 5px 5px 0px; padding:4px 11px 4px 11px;"> Stop </button>
+
+    <script>
+
+        const vizPanel = document.getElementById('live-viz');
+        const vscode = acquireVsCodeApi();
+        const btnUpdate = document.getElementById('btnUpdate');
+
+        btnUpdate.addEventListener("click", () => {
+            vscode.postMessage({ method: "update" });
+        });
+        // Handle the message inside the webview
+        window.addEventListener('message', event => {
+            const msg = event.data;
+            vizPanel.innerHTML(msg.viz);
+        });
+
+        // enum AlloyLanguageServerMessageType{
+        // 	RunStarted, 0
+        // 	RunInProgress, 1
+        // 	RunResult, 2
+        // 	RunCompleted, 3
+        //  Warning, 4
+        // }
+    </script>
+</body>
+
+</html>

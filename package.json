@@ -1,12 +1,12 @@
 {
     "name": "alloy",
-    "displayName": "Alloy",
-    "description": "support for the Alloy modelling language",
+    "displayName": "Alloy-viz",
+    "description": "minor support for the Alloy modelling language & type visualizations",
     "version": "0.6.1",
     "publisher": "ArashSahebolamri",
     "repository": {
         "type": "git",
-        "url": "https://github.com/s-arash/org.alloytools.alloy/tree/ls"
+        "url": ""
     },
     "engines": {
         "vscode": "^1.23.0"
@@ -18,7 +18,8 @@
     "activationEvents": [
         "onLanguage:alloy",
         "onLanguage:markdown",
-        "onCommand:alloy.openAlloyEditor"
+        "onCommand:alloy-viz.openAlloyEditor",
+        "onCommand:alloy-viz.launchLiveTypeViz"
     ],
     "main": "./out/extension",
     "contributes": {
@@ -56,7 +57,7 @@
             {
                 "title": "Alloy",
                 "properties": {
-                    "alloy.commandHighlightMode": {
+                    "alloy-viz.commandHighlightMode": {
                         "type": "string",
                         "enum": [
                             "codelens",
@@ -70,86 +71,107 @@
         ],
         "commands": [
             {
-                "command": "alloy.openAlloyEditor",
+                "command": "alloy-viz.launchLiveTypeViz",
+                "title": "Open Alloy live Type Visualizer",
+                "category": "Alloy",
+                "icon": {
+                    "light": "./res/preview.svg",
+                    "dark": "./res/preview.svg"
+                }
+            },
+            {
+                "command": "alloy-viz.openAlloyEditor",
                 "title": "Open Alloy Editor",
                 "category": "Alloy"
             },
             {
-                "command": "alloy.listCommands",
+                "command": "alloy-viz.listCommands",
                 "title": "List Alloy Commands",
                 "category": "Alloy"
             },
             {
-                "command": "alloy.executeAllCommands",
+                "command": "alloy-viz.executeAllCommands",
                 "title": "Execute All Alloy Commands",
                 "category": "Alloy"
             },
             {
-                "command": "alloy.openLatestInstance",
+                "command": "alloy-viz.openLatestInstance",
                 "title": "Open Latest Alloy Instance",
                 "category": "Alloy"
             },
             {
-                "command": "alloy.executeCommandUnderCursor",
+                "command": "alloy-viz.executeCommandUnderCursor",
                 "title": "Execute Current Alloy Command",
                 "category": "Alloy"
             }
         ],
         "keybindings": [
             {
-                "key": "ctrl+shift+a e",
-                "command": "alloy.executeCommandUnderCursor",
+                "key": "ctrl+shift+a v",
+                "command": "alloy-viz.launchLiveTypeViz",
                 "when": "editorTextFocus && editorLangId == 'alloy'"
             },
             {
                 "key": "ctrl+shift+a e",
-                "command": "alloy.executeCommandUnderCursor",
+                "command": "alloy-viz.executeCommandUnderCursor",
+                "when": "editorTextFocus && editorLangId == 'alloy'"
+            },
+            {
+                "key": "ctrl+shift+a e",
+                "command": "alloy-viz.executeCommandUnderCursor",
                 "when": "editorTextFocus && editorLangId == 'markdown'"
             },
             {
                 "key": "ctrl+shift+a a",
-                "command": "alloy.executeAllCommands",
+                "command": "alloy-viz.executeAllCommands",
                 "when": "editorTextFocus && editorLangId == 'alloy'"
             },
             {
                 "key": "ctrl+shift+a a",
-                "command": "alloy.executeAllCommands",
+                "command": "alloy-viz.executeAllCommands",
                 "when": "editorTextFocus && editorLangId == 'markdown'"
             },
             {
                 "key": "ctrl+shift+a c",
-                "command": "alloy.listCommands",
+                "command": "alloy-viz.listCommands",
                 "when": "editorTextFocus && editorLangId == 'alloy'"
             },
             {
                 "key": "ctrl+shift+a c",
-                "command": "alloy.listCommands",
+                "command": "alloy-viz.listCommands",
                 "when": "editorTextFocus && editorLangId == 'markdown'"
             },
             {
                 "key": "ctrl+shift+a o",
-                "command": "alloy.openAlloyEditor"
+                "command": "alloy-viz.openAlloyEditor"
             },
             {
                 "key": "ctrl+shift+a l",
-                "command": "alloy.openLatestInstance"
+                "command": "alloy-viz.openLatestInstance"
             }
-        ]
+        ],
+        "menus": {
+            "editor/title": [
+                {
+                    "when": "resourceLangId == alloy",
+                    "command": "alloy-viz.launchLiveTypeViz",
+                }
+            ]
+        }
     },
     "keywords": [
-        "Alloy"
-    ],
-    "extensionDependencies": [
-        "DongyuZhao.alloy-vscode"
+        "Alloy",
+        "software verification",
+        "visualization"
     ],
     "author": {
-        "name": "Arash Sahebolamri"
+        "name": "osterhoutan"
     },
     "qna": "marketplace",
     "scripts": {
         "vscode:prepublish": "npm run compile",
-        "compile": "tsc -p ./",
-        "watch": "tsc -watch -p ./",
+        "compile": "tspeg ./src/parser/parser.pegjs ./src/parser/parser.ts && tsc -p ./src/",
+        "watch": "tsc -watch -p ./src/",
         "postinstall": "node ./node_modules/vscode/bin/install",
         "test": "npm run compile && node ./node_modules/vscode/bin/test"
     },
@@ -158,7 +180,8 @@
         "@types/node": "^7.10.10",
         "tslint": "^5.20.1",
         "typescript": "^2.6.1",
-        "vscode": "^1.1.36"
+        "vscode": "^1.1.36",
+        "tspeg": "^3.0.0"
     },
     "dependencies": {
         "vscode-languageclient": "^4.4.2"
