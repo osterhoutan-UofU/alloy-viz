@@ -181,7 +181,7 @@
         "tslint": "^5.20.1",
         "typescript": "^2.6.1",
         "vscode": "^1.1.36",
-        "tspeg": "^3.0.0"
+        "cup-parser": "^0.2.0"
     },
     "dependencies": {
         "vscode-languageclient": "^4.4.2"
